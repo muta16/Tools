@@ -11,10 +11,11 @@ if (url.indexOf("missav") != -1) {
     <link rel="stylesheet" href="https://limbopro.com/CSS/Adblock4limbo.user.css" type="text/css" />\
     <script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>'
     let data=$response.body
+    console.log(`o1:${data}`)
     let body = data.replace(reg, str).replace(window_open_reg, window_open_str);
     let headers = $response.headers;
     headers['Content-Security-Policy'] = "child-src	'self'";
-    console.log(`oo:${body}`)
+    console.log(`o2:${body}`)
     $done({ headers, body, url })
 
 } else {
@@ -27,7 +28,7 @@ if (url.indexOf("missav") != -1) {
     let body = data.replace(reg, str);
     let headers = $response.headers;
     headers['Content-Security-Policy'] = '';
-    console.log(`aa:${body}`)
+    console.log(`a:${body}`)
     $done({ headers, body, url })
 
 }
