@@ -1,6 +1,6 @@
 #!name=jstest
 [MITM]
-hostname = missav.com
+hostname = missav.com,
 
 [Url Rewrite]
 ^https://creative.live.missav.com/widgets/Spot/lib.js url reject
