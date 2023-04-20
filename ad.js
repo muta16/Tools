@@ -16,7 +16,8 @@ if (url.indexOf("missav") != -1) {
     let headers = $response.headers;
     headers['Content-Security-Policy'] = "child-src	'self'";
     console.log(`o2:${body}`)
-    $done({ headers, body, url })
+    /*$done({ headers, body, url })*/
+    $done({})
 
 } else {
 
@@ -29,6 +30,7 @@ if (url.indexOf("missav") != -1) {
     let headers = $response.headers;
     headers['Content-Security-Policy'] = '';
     console.log(`a:${body}`)
-    $done({ headers, body, url })
+     /*$done({ headers, body, url })*/
+    $done({})
 
 }
