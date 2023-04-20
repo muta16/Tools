@@ -1,6 +1,5 @@
 /*
 by Adblock4limbo https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js
-*/
 let url = $request.url;
 if (url.indexOf("missav") != -1) {
 
@@ -9,28 +8,28 @@ if (url.indexOf("missav") != -1) {
     let reg = '<head>';
     let str = '<head>\
     <link rel="stylesheet" href="https://limbopro.com/CSS/Adblock4limbo.user.css" type="text/css" />\
-    <script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>'
-    let data=$response.body
-    console.log(`o1:${data}`)
+    <script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>';
+    let data=$response.body;
+    console.log(`o1:${data}`);
     let body = data.replace(reg, str).replace(window_open_reg, window_open_str);
     let headers = $response.headers;
     headers['Content-Security-Policy'] = "child-src	'self'";
-    console.log(`o2:${body}`)
-    /*$done({ headers, body, url })*/
-    $done({})
+    console.log(`o2:${body}`);
+    $done({ headers, body, url });
 
 } else {
 
     let reg = '<head>';
     let str = '<head>\
     <link rel="stylesheet" href="https://limbopro.com/CSS/Adblock4limbo.user.css" type="text/css" />\
-    <script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>'
-    let data = $response.body
+    <script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>';
+    let data = $response.body;
     let body = data.replace(reg, str);
     let headers = $response.headers;
     headers['Content-Security-Policy'] = '';
-    console.log(`a:${body}`)
-     /*$done({ headers, body, url })*/
-    $done({})
+    console.log(`a:${body}`);
+    $done({ headers, body, url });
 
 }
+*/
+console.log(`body:${$response.body}`);
