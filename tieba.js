@@ -53,6 +53,7 @@ var url_fetch_add = {
 if ($nobyda.isRequest) {
   GetCookie()
 } else {
+  console.log(`cookieVal:${cookieVal}`);
   signTieBa()
 }
 
