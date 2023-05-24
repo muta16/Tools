@@ -53,7 +53,7 @@ var url_fetch_add = {
 if ($nobyda.isRequest) {
   GetCookie()
 } else {
-  console.log(`cookieVal:${cookieVal}`);
+  #console.log(`cookieVal:${cookieVal}`);
   signTieBa()
 }
 
@@ -72,7 +72,7 @@ function signTieBa() {
     } else {
       // $nobyda.notify("贴吧签到", "贴吧列表", response.body);
       var body = JSON.parse(data);
-      console.log(`data:${data}`);
+      #console.log(`data:${data}`);
       var isSuccessResponse = body && body.no == 0 && body.error == "success" && body.data.tbs;
       if (!isSuccessResponse) {
         $nobyda.notify("贴吧签到", "签到失败", (body && body.error) ? body.error : "接口数据获取失败");
