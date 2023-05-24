@@ -2,7 +2,7 @@
 百度贴吧签到脚本
 
 脚本来自: https://github.com/NobyDa/Script
-
+cookie格式:BDUSS=abc即可
 [Script]
 # 贴吧签到
 cron "0 9 * * *" script-path=https://raw.githubusercontent.com/NobyDa/Script/master/BDTieBa-DailyBonus/TieBa.js
