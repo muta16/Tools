@@ -67,6 +67,6 @@ function _writeHttpHeader() {
   let conPort = $session.conPort;
   let verify = createVerify(conHost);
 
-  var header = `CONNECT ${conHost}:${conPort}@collab-ws.dingtalk.com HTTP/1.1\r\nHost: @collab-ws.dingtalk.com\r\nX-T5-Auth: ${verify}\r\nProxy-Connection: keep-alive\r\n\r\n`;
+  var header = `CONNECT ${conHost}:${conPort} HTTP/1.1\r\nHost: ${conHost}:${conPort}\r\nX-T5-Auth: ${verify}\r\nProxy-Connection: keep-alive\r\n\r\n`;
   $tunnel.write($session, header);
 }
