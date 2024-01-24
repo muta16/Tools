@@ -1,6 +1,6 @@
 #!name=jstest
 [MITM]
-hostname =  www.wnacg.com, www.wnacg.org,  91porn.com,  www.javmost.xyz, javmost.xyz, www5.javmost.xyz, www5.javmost.com, jable.tv, 18comic.org, 18comic.vip www.pornhub.com, cn.pornhub.com, missav.com, 
+hostname =  www.wnacg.com, www.wnacg.org,  91porn.com,  www.javmost.xyz, javmost.xyz, www5.javmost.xyz, www5.javmost.com, jable.tv, 18comic.org, 18comic.vip www.pornhub.com, cn.pornhub.com, missav.com, taichu.96225.com
 
 [Url Rewrite]
 ^https://creative.live.missav.com/widgets/Spot/lib.js url reject
@@ -15,4 +15,4 @@ http-response ^https?:\/\/(\w{0,3}(\.){0,1}(jable)(\.)\w{0,3})(?!.*?(/(cdn-cgi))
 http-response ^https?:\/\/(\w{0,3}(\.){0,1}(pornhub)(\.)\w{0,3})(?!.*?(/(cdn-cgi)))(?!.*?(\.(css|js|jpeg|jpg|png|gif|ico|mp3|mp4|svg|tff|PNG|woff|woff2|m3u8))).* script-path=https://raw.githubusercontent.com/muta16/Demo/main/ad.js, requires-body=true, timeout=10,tag=cnpornhub
 http-response ^https?:\/\/(\w{0,3}(\.){0,1}(91porn)(\.)\w{0,3})(?!.*?(/(cdn-cgi)))(?!.*?((captcha\.php)|(\.(css|js|jpeg|jpg|png|gif|ico|mp3|mp4|svg|tff|ttf|PNG|woff|woff2|m3u8)))).* script-path=https://raw.githubusercontent.com/muta16/Demo/main/ad.js, requires-body=true, timeout=10,tag=91
 http-response ^https?://api\.m\.jd\.com/client\.action\?functionId=(wareBusiness|serverConfig|basicConfig) script-path=https://service.2ti.st/QuanX/Script/jd_tb_price/main.js,requires-body=true, timeout=10,tag=jd
-http-response ^https?:\/\/taichu\.96225\.com\/showcase\/findPage script-path=https://raw.githubusercontent.com/muta16/Demo/main/shiminka.js, requires-body=true, timeout=10,tag=shiminka
+http-response ^https?://taichu\.96225\.com/showcase/findPage script-path=https://raw.githubusercontent.com/muta16/Demo/main/shiminka.js, requires-body=true, timeout=10,tag=shiminka
