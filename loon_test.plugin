@@ -3,6 +3,7 @@
 hostname =  www.wnacg.com, www.wnacg.org,  91porn.com,  www.javmost.xyz, javmost.xyz, www5.javmost.xyz, www5.javmost.com, jable.tv, 18comic.org, 18comic.vip www.pornhub.com, cn.pornhub.com, missav.com, taichu.96225.com
 
 [Url Rewrite]
+^https://taichu\.96225\.com/showcase/findPage url reject
 ^https://creative.live.missav.com/widgets/Spot/lib.js url reject
 ^https?:\/\/[0-9a-zA-Z]{10,16}\.cloudfront\.net\/\?[a-z]{3,7}=\d{4,8} url reject
 ^https:\/\/(cn|www)\.pornhub\.com\/_xa\/ads.* url reject
