@@ -1,30 +1,25 @@
 /*
 by Adblock4limbo https://raw.githubusercontent.com/limbopro/Adblock4limbo/main/Adguard/Adblock4limbo.js
 */
-let url = $request.url;
-if (url.indexOf("missav") != -1) {
 
-    let window_open_reg = 'window.open';
-    let window_open_str = '';
-    let reg = '<head>';
-    let str = '<head>\
-    <link rel="stylesheet" href="https://limbopro.com/CSS/Adblock4limbo.user.css" type="text/css" />\
-    <script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>';
-    let body = $response.body.replaceAll(reg, str).replaceAll(window_open_reg, window_open_str);
-    let headers = $response.headers;
-    headers['Content-Security-Policy'] = "child-src	'self'";
-    console.log(`o2:${body}`);
-    $done({ headers, body, url });
+// 定义请求体
+// const modifiedHeaders = $request.headers;
+// modifiedHeaders['User-Agent'] = 'Mozilla/6.0 (iPhone 15; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/116.0.5845.118 Mobile/15E148 Safari/604.1';
 
-} else {
+// 定义 CSS/JS
+const regex = '</title>';
+const replace_str = '</title>\
+<link rel="stylesheet" href="https://limbopro.com/CSS/Adblock4limbo.user.css" type="text/css" />\
+<script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>\
+'
 
-    let reg = '<head>';
-    let str = '<head>\
-    <link rel="stylesheet" href="https://limbopro.com/CSS/Adblock4limbo.user.css" type="text/css" />\
-    <script type="text/javascript" async="async" src="https://limbopro.com/Adguard/Adblock4limbo.user.js"></script>';
-    let body = $response.body.replaceAll(reg, str);
-    let headers = $response.headers;
-    headers['Content-Security-Policy'] = '';
-    $done({ headers, body, url });
+// 定义响应体
+if ($response.body) {
+    var body = $response.body.replaceAll('</TITLE>', '</title>').replaceAll(regex, replace_str)
+};
 
-}
+// 定义响应头
+const headers = $response.headers;
+headers['Content-Security-Policy'] = '*';
+
+$done({ headers: headers, body: body });
