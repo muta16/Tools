@@ -1,4 +1,4 @@
-#!input = env
+#!input = ServiceChain_env
 [MITM]
 hostname = retail-finance-csite.proxy.dasouche.com
 [Script]
