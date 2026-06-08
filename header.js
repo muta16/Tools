@@ -1,4 +1,6 @@
-const customValue = $argument && $argument.trim() !== "" ? $argument : null;
+let rawValue = $persistentStore.read("ServiceChain_env") 
+let customValue = rawValue && rawValue !== "" ? rawValue : null;
+
 
 if (customValue) {
     // 校验请求域名（作为额外安全判断，即使规则已过滤仍保留）
