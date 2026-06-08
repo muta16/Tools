@@ -3,7 +3,7 @@ let customValue = rawValue && rawValue !== "" ? rawValue : null;
 
 
 if (customValue) {
-    $request.headers["X-Souche-ServiceChain"] = "env"+customValue;
+    $request.headers["X-Souche-ServiceChain"] = "env-"+customValue;
     console.log(`已添加 X-Souche-ServiceChain: ${customValue}`);
 } 
 
