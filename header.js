@@ -1,8 +1,8 @@
 let rawValue = $persistentStore.read("ServiceChain_env") 
 let customValue = rawValue && rawValue !== "" ? rawValue : null;
+let method = $request.method;
 
-
-if (customValue) {
+if (method !== "OPTIONS"&&customValue) {
     $request.headers["X-Souche-ServiceChain"] = "env-"+customValue;
     console.log(`已添加 X-Souche-ServiceChain: ${customValue}`);
 } 
