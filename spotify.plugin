@@ -3,11 +3,10 @@
 
 # header-del 已迁移到 [Script] 中的 spotify-qx-header.js 请求脚本
 [Rewrite]
+^https:\/\/(spclient\.wg\.spotify\.com|gae2-spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com)(:443)?\/user-customization-service\/v1\/customize$ header-del if-none-match
 
 [Mitm]
 hostname = spclient.wg.spotify.com, *spclient.spotify.com, gae2-spclient.wg.spotify.com
-[Rewrite]
-^https:\/\/(spclient\.wg\.spotify\.com|gae2-spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com)(:443)?\/user-customization-service\/v1\/customize$ header-del if-none-match
 
 [Script]
 
