@@ -1,11 +1,21 @@
+# Spotify 解锁插件（Loon plugin 格式）
+# 由原有 Loon 文件同步「下游修改后」版本（daozen/rules，对应 QX module/spotify.conf）
+
+# header-del 已迁移到 [Script] 中的 spotify-qx-header.js 请求脚本
 [Rewrite]
-^https:\/\/(spclient\.wg\.spotify\.com|.*-spclient\.spotify\.com(:443)?)\/user-customization-service\/v1\/customize$ header-del if-none-match
 
 [Mitm]
-hostname = spclient.wg.spotify.com, gae2-spclient.wg.spotify.com, *spclient.spotify.com
+hostname = spclient.wg.spotify.com, *spclient.spotify.com, gae2-spclient.wg.spotify.com
 
 [Script]
-http-request ^https:\/\/(spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-json.js, timeout=10, tag=spotifyJson
-http-request ^https:\/\/(gae2-spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)\/(artistview\/v1\/artist|album-entity-view\/v2\/album)\/ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-json.js, timeout=10, tag=spotifyJson
-http-response ^https:\/\/(spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProto
-http-response ^https:\/\/(gae2-spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)\/(bootstrap\/v1\/bootstrap|user-customization-service\/v1\/customize)$ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProto
+# 1. 删除 If-None-Match 请求头（spclient.wg 与 gae2 两路）
+http-request ^https://(spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)/user-customization-service/v1/customize$ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-qx-header.js, timeout=10, tag=spotifyHeader
+http-request ^https://(gae2-spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)/user-customization-service/v1/customize$ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-qx-header.js, timeout=10, tag=spotifyHeaderGae2
+
+# 2. 解密 Protobuf 响应（bootstrap / customize）
+http-response ^https://(spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)/(bootstrap/v1/bootstrap|user-customization-service/v1/customize)$ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProto
+http-response ^https://(gae2-spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)/(bootstrap/v1/bootstrap|user-customization-service/v1/customize)$ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-proto.js, requires-body=true, binary-body-mode=true, timeout=10, tag=spotifyProtoGae2
+
+# 3. 强制 iPad 布局（artistview / album-entity-view）
+http-request ^https://(spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)/(artistview/v1/artist|album-entity-view/v2/album)/ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-json.js, timeout=10, tag=spotifyJson
+http-request ^https://(gae2-spclient\.wg\.spotify\.com(:443)?|.*-spclient\.spotify\.com(:443)?)/(artistview/v1/artist|album-entity-view/v2/album)/ script-path=https://raw.githubusercontent.com/daozen/rules/master/js/spotify-json.js, timeout=10, tag=spotifyJsonGae2
